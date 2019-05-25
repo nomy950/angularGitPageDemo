@@ -17,7 +17,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { AuthGuard } from './auth-guard.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
-import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
+import { AUTH_PROVIDERS} from 'angular2-jwt';
 
 @NgModule({
   declarations: [
@@ -45,15 +45,7 @@ import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt'
     AuthService,
     AdminAuthGuard,
     AuthGuard,
-    AuthHttp,
-        provideAuth({
-            headerName: 'Authorization',
-            headerPrefix: 'bearer',
-            tokenName: 'token',
-            tokenGetter: (() => localStorage.getItem('id_token')),
-            globalHeaders: [{ 'Content-Type': 'application/json' }],
-            noJwtError: true
-        }),
+    AUTH_PROVIDERS,
     // For creating a mock back-end. You don't need these in a real app. 
     fakeBackendProvider,
     MockBackend,
